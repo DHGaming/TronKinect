@@ -3,9 +3,7 @@ import kinect4WinSDK.SkeletonData;
  
 Kinect kinect;
 ArrayList <SkeletonData> bodies;
-
  //this is the first method that is called in processing
- //it only runs once 
 void setup()
 {
   size(640, 480);
@@ -16,10 +14,6 @@ void setup()
   
 }
  
- /*
- This countiously runs 
- it draws 
- */
 void draw()
 {
   background(0);
@@ -134,14 +128,9 @@ void DrawBone(SkeletonData _s, int _j1, int _j2)
   }
 }
 
- /*
- -this method is probably overriden 
- preconditon:
- -if a new skeletonData object appears this method is called 
- postconditon: 
- -calls a synchronized function on arraylist of bodies 
- within the synchronized function, the newfound data skeleton object is added to bodies 
- */
+ //this method is probably overriden 
+ // if a new skeletonData object appears this method calls a synchronized function on arraylist of bodies
+ //within the synchronized function, the new skeleton data object are added 
 void appearEvent(SkeletonData _s) 
 {
   if (_s.trackingState == Kinect.NUI_SKELETON_NOT_TRACKED) 
@@ -153,14 +142,6 @@ void appearEvent(SkeletonData _s)
   }
 }
  
- /*
- -this method is probably overriden 
- Precondition:
- -if a new skeletonData object disappears this method is called 
- Postconditon: 
- -calls a synchronized function on arraylist of bodies 
- within the synchronized function, the lost dataskeleton object is removed from bodies
- */
 void disappearEvent(SkeletonData _s) 
 {
   synchronized(bodies) {
@@ -173,8 +154,7 @@ void disappearEvent(SkeletonData _s)
     }
   }
 }
-
-
+ 
 void moveEvent(SkeletonData _b, SkeletonData _a) 
 {
   if (_a.trackingState == Kinect.NUI_SKELETON_NOT_TRACKED) 

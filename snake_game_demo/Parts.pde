@@ -1,26 +1,23 @@
-class Parts
+abstract class Parts
 {
-  private int x;
-  private int y;
+
   private int w;
   private int h;
   private PVector position;
   
   Parts(int xx, int yy, int ww, int hh)
   {
-    x=xx;
-    y=yy;
     w=ww;
     h=hh;
-    position = new PVector(x,y);
+    position = new PVector(xx,yy);
   }
   
   void displayParts()
   {
-    rect(x,y,w,h);
+    rect(getX(),getY(),w,h);
   }
   
-  public void getImage(){}
+  public abstract PImage getImage();
   
   PVector getPosition() 
   {
@@ -34,6 +31,16 @@ class Parts
     return true;
     else 
     return false;
+  }
+  
+  float getX()
+  {
+   return getPosition().x;
+  }
+  
+  float getY()
+  {
+   return getPosition().y;
   }
   
   int getWidth()
@@ -50,6 +57,7 @@ class Parts
   {
     return position; 
   }
+  
   void setPosition(float a, float b)
   {
     position.x=a;

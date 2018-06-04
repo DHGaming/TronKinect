@@ -1,11 +1,20 @@
 class Player extends Parts 
 {
   ArrayList<Parts> tailList = new ArrayList<Parts>();
-  private int score = 4;
+  private int score = 5;
   
+  /* Directions are like those on the Unit Circle.
+   * d = 0 corresponds to right
+   * d = 1 is up
+   * d = 2 is left
+   * d = 3 is down
+   */
   private int direction;
+  
+  // Identifies which player, 1(id = 0) or 2 (id = 1)
   private int id;
   
+  //images for the objects
   private PImage car1 = loadImage("car1.png");
   private PImage car2 = loadImage("car2.png");
   
@@ -14,11 +23,6 @@ class Player extends Parts
     super(x,y,w,h);
      direction = d;
      id=idd;
-  }
-  //adds to the 
-  void turn()
-  {
-    setDirection((direction + 1)%4);
   }
   
   void move()
@@ -56,21 +60,19 @@ class Player extends Parts
   @Override
   void displayParts()
   {
-    for(Parts t : tailList)
+    displayPlayer();
+    for(int i = 0; i < tailList.size(); i++)
     {
-      image(t.getImage(), getX(), getY(),super.getWidth(),super.getHeight());
+      
+      image(tailList.get(i).getImage(), (int) tailList.get(i).getX(), tailList.get(i).getY(),super.getWidth(),super.getHeight());
     }
   }
   
-  void displayPlayer(int i)
+  void displayPlayer()
   {
     if (id==0);
     {
-      image(car1,getX(),getY(),super.getWidth(),super.getHeight());
-    }
-    if(id!=0)
-    {
-      image(car2,getX(), getY(),super.getWidth(),super.getHeight());
+      image(getImage(),getX(),getY(),super.getWidth(),super.getHeight());
     }
     
   }
@@ -78,13 +80,21 @@ class Player extends Parts
   {
     return id;
   }
+  
   float getX()
   {
-   return super.getPosition().x;
+   return super.getX();
   }
+  
   float getY()
   {
-   return super.getPosition().y;
+   return super.getY();
+  }
+  
+  public PImage getImage()
+  {
+    if (id == 0) return car1;
+    return car2;
   }
   
   /*

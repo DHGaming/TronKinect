@@ -12,11 +12,10 @@ void setup(){
   height = 480;
   int w = 40;
 
-  
   size(640,480);
-   tron = new Grid(width,height,w);
-   first = new Player(80, 40, w, w, 0, 0);
-   //second = new Player(560, 400,w, w, 2, 1);
+  tron = new Grid(width,height,w);
+  first = new Player(80, 40, w, w, 0, 0);
+  second = new Player(560, 400,w, w, 2, 1);
   
 }
 void draw(){
@@ -31,7 +30,7 @@ void draw(){
    first.move();
    //second.move();
    first.displayParts();
-   first.displayPlayer(first.getId());
+   first.displayPlayer();
    //first.displayTail();
    //second.displayPlayer(second.getId());
    //second.displayTail();

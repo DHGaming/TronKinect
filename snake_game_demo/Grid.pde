@@ -12,7 +12,7 @@ class Grid
       for(int y = 0; y<startY; y+=w)
       {
         println(y);
-        coordinates.add(new Parts(x,y,w,w));
+        //coordinates.add(new Parts(x,y,w,w));
       }
     }
   }

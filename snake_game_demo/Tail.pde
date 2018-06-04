@@ -9,23 +9,21 @@ public class Tail extends Parts
   {
     super((int)x,(int)y,w,h);
     direction = d%2;
-    //lifeSpan = l;
   }
-  /*
-  public void update()
-  {
-    lifeSpan--;
-  }
-  
-  public int getSpan()
-  {
-    return lifeSpan;
-  }
-  */
   
   public int getDirection()
   {
     return direction;
+  }
+  
+  float getX()
+  {
+   return super.getX();
+  }
+  
+  float getY()
+  {
+   return super.getY();
   }
   
   public PImage getImage()

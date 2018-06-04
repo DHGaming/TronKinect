@@ -25,6 +25,27 @@ class Player extends Parts
      id=idd;
   }
   
+<<<<<<< HEAD
+}
+int getId()
+{
+  return id;
+}
+
+void addTail()
+{
+  
+  if((tail.size()>=3))
+  {
+  PVector lastBlock= tail.get(tail.size()-1).getPosition();
+  tail.add(new Parts((int)lastBlock.x ,(int)lastBlock.y, super.getWidth(), super.getHeight()));
+  }
+  do{
+    tail.add(new Parts(0,0,super.getWidth(),super.getHeight()));
+  } while(tail.size()<3);
+  
+}
+=======
   void move()
   {
     updateTail();
@@ -116,4 +137,5 @@ class Player extends Parts
     }
   }
   */
+>>>>>>> ede0c4f227d57c43075fae72288ddcbd949e53cc
 }

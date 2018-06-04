@@ -51,4 +51,18 @@ int getId()
 {
   return id;
 }
+
+void addTail()
+{
+  
+  if((tail.size()>=3))
+  {
+  PVector lastBlock= tail.get(tail.size()-1).getPosition();
+  tail.add(new Parts((int)lastBlock.x ,(int)lastBlock.y, super.getWidth(), super.getHeight()));
+  }
+  do{
+    tail.add(new Parts(0,0,super.getWidth(),super.getHeight()));
+  } while(tail.size()<3);
+  
+}
 }

@@ -26,7 +26,7 @@ void setup()
    tron = new Grid(width,height,w);
     
    players.add(new Player(3 * w, w, w, w, 3, 0)); //player 1
-   players.add(new Player(width - 2 * w, height - 2 * w, w, w, 2, 1)); //player 2
+   //players.add(new Player(width - 2 * w, height - 2 * w, w, w, 2, 1)); //player 2
     
    kinect = new Kinect(this);
    smooth();
@@ -43,9 +43,9 @@ void setup()
     {
       image(theBack,0,0,640,480);
       
-      for(int i = 0; i < 2; i++)
+      for(int i = 0; i < players.size(); i++)
       {
-        
+        players.get(i).setDirection(getDirection(bodies.get(i)) );
         players.get(i).move();
         players.get(i).displayParts();
         players.get(i).displayPlayer();
@@ -158,7 +158,7 @@ void moveEvent(SkeletonData _b, SkeletonData _a)
   }
 }
 
-void getDirection(SkeletonData _s)
+int getDirection(SkeletonData _s)
 {
    PVector leftHand = _s.skeletonPositions[Kinect.NUI_SKELETON_POSITION_HAND_LEFT];
    PVector rightHand =_s.skeletonPositions[Kinect.NUI_SKELETON_POSITION_HAND_RIGHT];
@@ -172,10 +172,12 @@ void getDirection(SkeletonData _s)
     if(rightUp)
     {
       System.out.println("Up");
+      return 1;
     }
     else
     {
       System.out.println("Left");
+      return 2;
     }
   }
   else
@@ -183,13 +185,16 @@ void getDirection(SkeletonData _s)
     if (rightUp)
     {
       System.out.println("Right");
+      return 0;
     }
   
   }
   if(!rightUp&&!leftUp)
   {
        System.out.println("Down");
+       return 3;
   }
+  return 0;
 }
   
   void drawSkeleton(SkeletonData _s) 

@@ -9,7 +9,11 @@ int translationY;
 Grid tron;
 Player first;
 Player second;
-PVector apple=new PVector(0,0);
+PVector powerPosition = new PVector(0,0);
+
+int w = 40;
+
+private PImage power;
 private PImage theBack;
 ArrayList<Player> players = new ArrayList();
 
@@ -19,24 +23,25 @@ ArrayList <SkeletonData> bodies;
 
 void setup()
 {
-   theBack = loadImage("tronworld.png");
-   width = 640;
-   height = 480;
-   int w = 40;
-   size(640,480);
-   tron = new Grid(width,height,w);
+  power = loadImage("power.png");
+  theBack = loadImage("tronworld.png");
+  width = 640;
+  height = 480;
+  
+  size(640,480);
+  tron = new Grid(width,height,w);
+   
+  players.add(new Player(3 * w, w, w, w, 3, 0)); //player 1
+  //players.add(new Player(width - 2 * w, height - 2 * w, w, w, 2, 1)); //player 2
+   
+  kinect = new Kinect(this);
+  smooth();
+  bodies = new ArrayList<SkeletonData>();
     
-   players.add(new Player(3 * w, w, w, w, 3, 0)); //player 1
-   //players.add(new Player(width - 2 * w, height - 2 * w, w, w, 2, 1)); //player 2
-    
-   kinect = new Kinect(this);
-   smooth();
-   bodies = new ArrayList<SkeletonData>();
-    
-  dialation =1;
-  translationX=0;
-  translationY=0;
-  generateApple();
+  dialation = 1;
+  translationX = 0;
+  translationY = 0;
+  generatePower();
   }
   
   void draw()
@@ -44,36 +49,35 @@ void setup()
     image(theBack,0,0,640,480);
     
     
-      image(kinect.GetMask(), 160, 120, 320, 240);
-      
-      for (int i=0; i<bodies.size (); i++) 
-      {
-         //getDirection(bodies.get(i));
-      }
-      
-      if(bodies.size()>0){
+    image(kinect.GetMask(), 160, 120, 320, 240);
+    
+    for (int i=0; i<bodies.size (); i++) 
+    {
+       //getDirection(bodies.get(i));
+    }
+    
+    if(bodies.size()>0)
+    {
       for(int i = 0; i < 1; i++)
       {
         
         if(frameCount%12==0)
-    {
-        players.get(i).setDirection(getDirection(bodies.get(i)));
-        players.get(i).move();
-        
-        checkPowerUp(players.get(i));
-    }
+        {
+          players.get(i).setDirection(getDirection(bodies.get(i)));
+          players.get(i).move();
+          checkPowerUp(players.get(i));
+        }
+        //display Player and Tail
         players.get(i).displayParts();
         players.get(i).displayPlayer();
+        image(power,powerPosition.x,powerPosition.y,w,w);
     
-        
+        //collision
         float tempX = players.get(i).getX();
         float tempY = players.get(i).getY();
         players.get(i).collision(tempX, tempY);
-      
       }
-      
     }
-    
   }
 
   void placeWorld()
@@ -94,10 +98,6 @@ void setup()
       }
     }
   }
-  void playerMove(Player player)
-  {
-    player.move();
-  }
 
 //kinect half of the methods 
 void drawPosition(SkeletonData _s) 
@@ -105,7 +105,6 @@ void drawPosition(SkeletonData _s)
   noStroke();
   fill(0, 100, 255);
   String s1 = str(_s.dwTrackingID);
-  
   text(s1, _s.position.x*width/dialation+translationX, _s.position.y*height/dialation+translationY);
 }
 
@@ -207,25 +206,24 @@ int getDirection(SkeletonData _s)
 }
 
 
-//generate apple position randomly
+//generate power position randomly
 //display position
-void generateApple()
+void generatePower()
 {
-  float a=(float)(int)(Math.random()*15*40);
-  float b=(float)(int)(Math.random()*11*40);
-  apple.x=a;
-  apple.y=b;
+  float a = (float)(int)(Math.random()*15*40);
+  float b = (float)(int)(Math.random()*9*40);
+  powerPosition.x = a;
+  powerPosition.y = b;
   
 }
 
-void checkPowerUp(Player boxhead)
+void checkPowerUp(Player p)
 {
-  if(boxhead.getPosition().x==apple.x&&boxhead.getPosition().y==apple.y)
-    {
-      boxhead.addScore();
-      generateApple();
-    }
-  
+  if(p.getX() == powerPosition.x && p.getX() == powerPosition.y)
+  {
+    p.addScore();
+    generatePower();
+  } 
 }
 //we check if player position is equal to part position
 //if they are the same 

@@ -1,7 +1,7 @@
 class Player extends Parts 
 {
   ArrayList<Parts> tailList = new ArrayList<Parts>();
-  private int score = 3;
+  private int score = 5;
   
   /* Directions are like those on the Unit Circle.
    * d = 0 corresponds to right
@@ -46,14 +46,10 @@ class Player extends Parts
     if(direction==3){{super.getPosition().y+=super.getWidth();}}
     
     //wrapping
-    if (getX() < 0) 
-      super.getPosition().x = width - 40;
-    if (getX() > width - 40) 
-      super.getPosition().x = 0;
-    if (getY() < 0) 
-      super.getPosition().y = height - 40;
-    if (getY() > height - 40) 
-      super.getPosition().y = 0;
+    if (getX() < 0) super.getPosition().x = width - 40;
+    if (getX() > width - 40) super.getPosition().x = 0;
+    if (getY() < 0) super.getPosition().y = height - 40;
+    if (getY() > height - 40) super.getPosition().y = 0;
   }
   
   void updateTail()
@@ -139,7 +135,5 @@ class Player extends Parts
     }
     return false;
   }
-  
-  void addScore(){score++;}
   
 }

@@ -52,9 +52,10 @@ void setup()
       if(bodies.size()>0){
       for(int i = 0; i < 1; i++)
       {
-        players.get(i).setDirection(getDirection(bodies.get(i)));
-        if(frameCount%15==0)
+        
+        if(frameCount%12==0)
     {
+        players.get(i).setDirection(getDirection(bodies.get(i)));
         players.get(i).move();
     }
         players.get(i).displayParts();

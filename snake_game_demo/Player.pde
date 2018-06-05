@@ -133,7 +133,7 @@ class Player extends Parts
     {
       if (x == t.getX() && y == t.getY())
       {
-        System.out.print(1);
+        
         return true;
       }
     }

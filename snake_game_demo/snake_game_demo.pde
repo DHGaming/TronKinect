@@ -20,6 +20,8 @@ ArrayList<Player> players = new ArrayList();
 Kinect kinect;
 ArrayList <SkeletonData> bodies;
 
+int gameState=0;
+int gameWinner;
 
 void setup()
 {
@@ -77,9 +79,14 @@ void setup()
         //collision
         float tempX = players.get(i).getX();
         float tempY = players.get(i).getY();
-        players.get(i).collision(tempX, tempY);
+        
+        if(players.get(i).collision(tempX, tempY))
+        {
+          gameState=1;
+        }
       }
     }
+    checkGameState();
   }
 
   void placeWorld()
@@ -229,6 +236,12 @@ void checkPowerUp(Player p)
     generatePower();
   } 
 }
+
+void checkGameState()
+{
+  while(gameState==1)
+  {System.out.println("draw");
+}}
 //we check if player position is equal to part position
 //if they are the same 
 //player.addScore()

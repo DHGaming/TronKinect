@@ -212,23 +212,18 @@ int getDirection(SkeletonData _s)
 //display position
 void generatePower()
 {
-<<<<<<< HEAD
-  float a = (float)((int)(Math.random()*15)*40);
-  float b = (float)(int)((Math.random()*9)*40);
-  powerPosition.x = a;
-  powerPosition.y = b;
-=======
-  int a =(int)(Math.random()*14);
-  int b =(int)(Math.random()*8);
-  powerPosition.x = (float) a * 40;
-  powerPosition.y = (float) b * 40;
->>>>>>> 18ce07b475d436562a5300b25595095ee7d683ad
+  //grabs the index of a random coordinate
+  int randomCoordinateIndex = (int)(Math.random()*192);
+  
+  //gets the coordinate 
+  powerPosition=tron.getCoordinate(randomCoordinateIndex);
+ 
   
 }
 
 void checkPowerUp(Player p)
 {
-  if(p.getX() == powerPosition.x && p.getX() == powerPosition.y)
+  if(p.getX() == powerPosition.x && p.getY() == powerPosition.y)
   {
     p.addScore();
     generatePower();

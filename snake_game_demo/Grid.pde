@@ -1,7 +1,7 @@
 class Grid
 {
 
-  ArrayList<Parts> coordinates; 
+  ArrayList<PVector> coordinates; 
   
   Grid(int startX, int startY, int w)
   {
@@ -12,11 +12,14 @@ class Grid
       for(int y = 0; y<startY; y+=w)
       {
         println(y);
-        //coordinates.add(new Parts(x,y,w,w));
+        coordinates.add(new PVector(x,y));
       }
     }
   }
-     
+  PVector getCoordinate(int c)
+  {
+    return coordinates.get(c);
+  }
   void displayGrid()
   {
      for(int i = 0; i<coordinates.size(); i++)
@@ -24,7 +27,7 @@ class Grid
        stroke(50,50,255);
        fill(0);
       
-       coordinates.get(i).displayParts();
+       rect(coordinates.get(i).x,coordinates.get(i).y,w,w);;
      }
   }
 }

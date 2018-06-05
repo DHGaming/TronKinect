@@ -67,10 +67,12 @@ void setup()
           players.get(i).move();
           checkPowerUp(players.get(i));
         }
+        
+        image(power,powerPosition.x,powerPosition.y,w,w);
         //display Player and Tail
         players.get(i).displayParts();
         players.get(i).displayPlayer();
-        image(power,powerPosition.x,powerPosition.y,w,w);
+        
     
         //collision
         float tempX = players.get(i).getX();
@@ -210,10 +212,17 @@ int getDirection(SkeletonData _s)
 //display position
 void generatePower()
 {
+<<<<<<< HEAD
   float a = (float)((int)(Math.random()*15)*40);
   float b = (float)(int)((Math.random()*9)*40);
   powerPosition.x = a;
   powerPosition.y = b;
+=======
+  int a =(int)(Math.random()*14);
+  int b =(int)(Math.random()*8);
+  powerPosition.x = (float) a * 40;
+  powerPosition.y = (float) b * 40;
+>>>>>>> 18ce07b475d436562a5300b25595095ee7d683ad
   
 }
 

@@ -15,8 +15,15 @@ class Player extends Parts
   private int id;
   
   //images for the objects
-  private PImage car1 = loadImage("car1.png");
-  private PImage car2 = loadImage("car2.png");
+  PImage car1e = loadImage("blucar_e.png");
+  PImage car1n = loadImage("blucar_n.png");
+  PImage car1w = loadImage("blucar_w.png");
+  PImage car1s = loadImage("blucar_s.png");
+  
+  PImage car2e = loadImage("redcar_e.png");
+  PImage car2n = loadImage("redcar_n.png");
+  PImage car2w = loadImage("redcar_w.png");
+  PImage car2s = loadImage("redcar_s.png");
   
   Player(int x, int y, int w, int h, int d, int idd)
   {
@@ -88,10 +95,23 @@ class Player extends Parts
    return super.getY();
   }
   
-  public PImage getImage()
+  PImage getImage()
   {
-    if (id == 0) return car1;
-    return car2;
+    if (id == 0)
+    {
+      if (direction == 0) return car1e;
+      if (direction == 1) return car1n;
+      if (direction == 2) return car1w;
+      if (direction == 3) return car1s;
+    }
+    else
+    {
+      if (direction == 0) return car2e;
+      if (direction == 1) return car2n;
+      if (direction == 2) return car2w;
+      if (direction == 3) return car2s;
+    }
+    return null;
   }
   
   //checks if a position overlaps with Parts within this object.

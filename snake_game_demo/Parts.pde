@@ -6,14 +6,14 @@ abstract class Parts
   
   Parts(int xx, int yy, int ww, int hh)
   {
-    w=ww;
-    h=hh;
-    position = new PVector(xx,yy);
+    w = ww;
+    h = hh;
+    position = new PVector(xx, yy);
   }
   
   void displayParts()
   {
-    rect(getX(),getY(),w,h);
+    rect(getX(), getY(), w, h);
   }
   
   public abstract PImage getImage();
@@ -25,11 +25,14 @@ abstract class Parts
   
   boolean isEqual(Parts other)
   {
-    if(other.getPosition().x==this.getPosition().x&&
-    other.getPosition().y==this.getPosition().y)
-    return true;
-    else 
-    return false;
+    if(other.getPosition().x == this.getPosition().x && other.getPosition().y == this.getPosition().y)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
   
   float getX()
@@ -59,7 +62,7 @@ abstract class Parts
   
   void setPosition(float a, float b)
   {
-    position.x=a;
-    position.y=b;
+    position.x = a;
+    position.y = b;
   }
 }

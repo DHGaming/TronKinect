@@ -1,14 +1,14 @@
 public class Tail extends Parts
 {
-  public PImage nos = loadImage("ver_tail.png");
-  public PImage eow = loadImage("hor_tail.png");
+  public PImage vertical = loadImage("ver_tail.png");
+  public PImage horizontal = loadImage("hor_tail.png");
 
   private int direction;
   
   public Tail(float x, float y, int w, int h, int d)
   {
-    super((int)x,(int)y,w,h);
-    direction = d%2;
+    super((int) x, (int) y, w, h);
+    direction = d % 2;
   }
   
   public int getDirection()
@@ -28,8 +28,7 @@ public class Tail extends Parts
   
   public PImage getImage()
   {
-    if (direction % 2 == 1) return nos;
-    return eow;
+    if (direction % 2 == 1) return vertical;
+    return horizontal;
   }
-  
 }

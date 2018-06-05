@@ -14,7 +14,7 @@ class Player extends Parts
   // Identifies which player, 1(id = 0) or 2 (id = 1)
   private int id;
   
-  //images for the objects
+  //images for the different car directions
   PImage car1e = loadImage("blucar_e.png");
   PImage car1n = loadImage("blucar_n.png");
   PImage car1w = loadImage("blucar_w.png");
@@ -27,9 +27,9 @@ class Player extends Parts
   
   Player(int x, int y, int w, int h, int d, int idd)
   {
-    super(x,y,w,h);
-     direction = d;
-     id=idd;
+    super(x, y, w, h);
+    direction = d;
+    id = idd;
   }
   
   //moves player and tail together
@@ -37,29 +37,47 @@ class Player extends Parts
   {
     updateTail();
     //right
-    if(direction==0){super.getPosition().x+=super.getWidth();}
+    if(direction == 0)
+    {
+      super.getPosition().x+=super.getWidth();
+    }
     //up
-    if(direction==1){{super.getPosition().y-=super.getWidth();}}
+    if(direction == 1)
+    {
+      super.getPosition().y-=super.getWidth();
+    }
     //left
-    if(direction==2){{super.getPosition().x-=super.getWidth();}}
+    if(direction == 2)
+    {
+      super.getPosition().x -= super.getWidth();
+    }
     //down
-    if(direction==3){{super.getPosition().y+=super.getWidth();}}
-    
+    if(direction == 3)
+    {
+      super.getPosition().y += super.getWidth();
+    }
     //wrapping
-    if (getX() < 0) 
+    if (getX() < 0)
+    {
       super.getPosition().x = width - 40;
+    }
     if (getX() > width - 40) 
+    {
       super.getPosition().x = 0;
+    }
     if (getY() < 0) 
+    {
       super.getPosition().y = height - 40;
+    }
     if (getY() > height - 40) 
+    {
       super.getPosition().y = 0;
+    }
   }
   
   void updateTail()
   {
-    tailList.add(new Tail(getX(), getY(), super.getWidth(), super.getHeight(), direction%2));
-    
+    tailList.add(new Tail(getX(), getY(), super.getWidth(), super.getHeight(), direction%2));  
     if(tailList.size() > score)
     {
       tailList.remove(0);
@@ -68,9 +86,10 @@ class Player extends Parts
   
   void setDirection(int d)
   {
-    if(direction%2!=d%2){direction=d;}
-    
-    
+    if(direction % 2 != d % 2)
+    {
+      direction=d;
+    }
   }
   
   int getDirection()
@@ -78,20 +97,20 @@ class Player extends Parts
     return direction;
   }
   
-  @Override
   void displayParts()
   {
     displayPlayer();
     for(int i = 0; i < tailList.size(); i++)
     {
-      image(tailList.get(i).getImage(), (int) tailList.get(i).getX(), tailList.get(i).getY(),super.getWidth(),super.getHeight());
+      image(tailList.get(i).getImage(), (int) tailList.get(i).getX(), tailList.get(i).getY(), super.getWidth(), super.getHeight());
     }
   }
   
   void displayPlayer()
   {
-      image(getImage(),getX(),getY(),super.getWidth(),super.getHeight());
+      image(getImage(), getX(), getY(), super.getWidth(), super.getHeight());
   }
+  
   int getId()
   {
     return id;
@@ -133,13 +152,14 @@ class Player extends Parts
     {
       if (x == t.getX() && y == t.getY())
       {
-        
         return true;
       }
     }
     return false;
   }
   
-  void addScore(){score++;}
-  
+  void addScore()
+  {
+    score++;
+  }
 }

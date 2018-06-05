@@ -61,7 +61,7 @@ void setup()
       for(int i = 0; i < 1; i++)
       {
         
-        if(frameCount%12==0)
+        if(frameCount%15==0)
         {
           players.get(i).setDirection(getDirection(bodies.get(i)));
           players.get(i).move();
@@ -210,8 +210,8 @@ int getDirection(SkeletonData _s)
 //display position
 void generatePower()
 {
-  float a = (float)(int)(Math.random()*15*40);
-  float b = (float)(int)(Math.random()*9*40);
+  float a = (float)((int)(Math.random()*15)*40);
+  float b = (float)(int)((Math.random()*9)*40);
   powerPosition.x = a;
   powerPosition.y = b;
   

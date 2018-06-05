@@ -44,6 +44,12 @@ class Player extends Parts
     if(direction==2){{super.getPosition().x-=super.getWidth();}}
     //down
     if(direction==3){{super.getPosition().y+=super.getWidth();}}
+    
+    //wrapping
+    if (getX() < 0) super.getPosition().x = width - 40;
+    if (getX() > width - 40) super.getPosition().x = 0;
+    if (getX() < 0) super.getPosition().y = height - 40;
+    if (getX() > height - 40) super.getPosition().y = 0;
   }
   
   void updateTail()

@@ -43,9 +43,16 @@ void setup()
     {
       image(theBack,0,0,640,480);
       
-      for(int i = 0; i < players.size(); i++)
+      for (int i=0; i<bodies.size (); i++) 
       {
-        players.get(i).setDirection(getDirection(bodies.get(i)) );
+         drawSkeleton(bodies.get(i));
+         //getDirection(bodies.get(i));
+      }
+      
+      if(bodies.size()>0){
+      for(int i = 0; i < 1; i++)
+      {
+        players.get(i).setDirection(getDirection(bodies.get(i)));
         players.get(i).move();
         players.get(i).displayParts();
         players.get(i).displayPlayer();
@@ -53,16 +60,10 @@ void setup()
       
         float tempX = players.get(i).getX();
         float tempY = players.get(i).getY();
-        players.get(0).collision(tempX, tempY);
-        players.get(1).collision(tempX, tempY);
+        players.get(i).collision(tempX, tempY);
+      }
       }
       
-      for (int i=0; i<bodies.size (); i++) 
-      {
-         drawSkeleton(bodies.get(i));
-         drawPosition(bodies.get(i));
-         getDirection(bodies.get(i));
-      }
     }
     
   }
@@ -195,83 +196,4 @@ int getDirection(SkeletonData _s)
        return 3;
   }
   return 0;
-}
-  
-  void drawSkeleton(SkeletonData _s) 
-{
-  // Body
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_HEAD, 
-  Kinect.NUI_SKELETON_POSITION_SHOULDER_CENTER);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_SHOULDER_CENTER, 
-  Kinect.NUI_SKELETON_POSITION_SHOULDER_LEFT);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_SHOULDER_CENTER, 
-  Kinect.NUI_SKELETON_POSITION_SHOULDER_RIGHT);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_SHOULDER_CENTER, 
-  Kinect.NUI_SKELETON_POSITION_SPINE);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_SHOULDER_LEFT, 
-  Kinect.NUI_SKELETON_POSITION_SPINE);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_SHOULDER_RIGHT, 
-  Kinect.NUI_SKELETON_POSITION_SPINE);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_SPINE, 
-  Kinect.NUI_SKELETON_POSITION_HIP_CENTER);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_HIP_CENTER, 
-  Kinect.NUI_SKELETON_POSITION_HIP_LEFT);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_HIP_CENTER, 
-  Kinect.NUI_SKELETON_POSITION_HIP_RIGHT);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_HIP_LEFT, 
-  Kinect.NUI_SKELETON_POSITION_HIP_RIGHT);
- 
-  // Left Arm
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_SHOULDER_LEFT, 
-  Kinect.NUI_SKELETON_POSITION_ELBOW_LEFT);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_ELBOW_LEFT, 
-  Kinect.NUI_SKELETON_POSITION_WRIST_LEFT);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_WRIST_LEFT, 
-  Kinect.NUI_SKELETON_POSITION_HAND_LEFT);
- 
-  // Right Arm
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_SHOULDER_RIGHT, 
-  Kinect.NUI_SKELETON_POSITION_ELBOW_RIGHT);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_ELBOW_RIGHT, 
-  Kinect.NUI_SKELETON_POSITION_WRIST_RIGHT);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_WRIST_RIGHT, 
-  Kinect.NUI_SKELETON_POSITION_HAND_RIGHT);
- 
-  // Left Leg
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_HIP_LEFT, 
-  Kinect.NUI_SKELETON_POSITION_KNEE_LEFT);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_KNEE_LEFT, 
-  Kinect.NUI_SKELETON_POSITION_ANKLE_LEFT);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_ANKLE_LEFT, 
-  Kinect.NUI_SKELETON_POSITION_FOOT_LEFT);
- 
-  // Right Leg
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_HIP_RIGHT, 
-  Kinect.NUI_SKELETON_POSITION_KNEE_RIGHT);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_KNEE_RIGHT, 
-  Kinect.NUI_SKELETON_POSITION_ANKLE_RIGHT);
-  DrawBone(_s, 
-  Kinect.NUI_SKELETON_POSITION_ANKLE_RIGHT, 
-  Kinect.NUI_SKELETON_POSITION_FOOT_RIGHT);
 }

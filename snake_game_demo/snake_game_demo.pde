@@ -9,6 +9,7 @@ int translationY;
 Grid tron;
 Player first;
 Player second;
+PVector apple=new PVector(0,0);
 private PImage theBack;
 ArrayList<Player> players = new ArrayList();
 
@@ -35,6 +36,7 @@ void setup()
   dialation =1;
   translationX=0;
   translationY=0;
+  generateApple();
   }
   
   void draw()
@@ -43,6 +45,7 @@ void setup()
     
     
       image(kinect.GetMask(), 160, 120, 320, 240);
+      
       for (int i=0; i<bodies.size (); i++) 
       {
          //getDirection(bodies.get(i));
@@ -56,11 +59,13 @@ void setup()
     {
         players.get(i).setDirection(getDirection(bodies.get(i)));
         players.get(i).move();
+        
+        checkPowerUp(players.get(i));
     }
         players.get(i).displayParts();
         players.get(i).displayPlayer();
     
-      
+        
         float tempX = players.get(i).getX();
         float tempY = players.get(i).getY();
         players.get(i).collision(tempX, tempY);
@@ -200,4 +205,29 @@ int getDirection(SkeletonData _s)
   }
   return 0;
 }
+
+
+//generate apple position randomly
+//display position
+void generateApple()
+{
+  float a=(float)(int)(Math.random()*15*40);
+  float b=(float)(int)(Math.random()*11*40);
+  apple.x=a;
+  apple.y=b;
+  
+}
+
+void checkPowerUp(Player boxhead)
+{
+  if(boxhead.getPosition().x==apple.x&&boxhead.getPosition().y==apple.y)
+    {
+      boxhead.addScore();
+      generateApple();
+    }
+  
+}
+//we check if player position is equal to part position
+//if they are the same 
+//player.addScore()
   

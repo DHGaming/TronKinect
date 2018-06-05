@@ -40,10 +40,9 @@ void setup()
   void draw()
   {
     image(theBack,0,0,640,480);
-    image(kinect.GetMask(), 0, 240, 320, 240);
     
     
-      image(kinect.GetMask(), 0, 240, 320, 240);
+      image(kinect.GetMask(), 160, 120, 320, 240);
       for (int i=0; i<bodies.size (); i++) 
       {
          //getDirection(bodies.get(i));

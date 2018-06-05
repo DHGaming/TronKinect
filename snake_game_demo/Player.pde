@@ -58,7 +58,9 @@ class Player extends Parts
   
   void setDirection(int d)
   {
-    direction = d;
+    if(direction%2!=d%2){direction=d;}
+    
+    
   }
   
   int getDirection()

@@ -39,13 +39,13 @@ void setup()
   
   void draw()
   {
-    if(frameCount%30==0)
-    {
-      image(theBack,0,0,640,480);
-      
+    image(theBack,0,0,640,480);
+    image(kinect.GetMask(), 0, 240, 320, 240);
+    
+    
+      image(kinect.GetMask(), 0, 240, 320, 240);
       for (int i=0; i<bodies.size (); i++) 
       {
-         drawSkeleton(bodies.get(i));
          //getDirection(bodies.get(i));
       }
       
@@ -53,15 +53,18 @@ void setup()
       for(int i = 0; i < 1; i++)
       {
         players.get(i).setDirection(getDirection(bodies.get(i)));
+        if(frameCount%15==0)
+    {
         players.get(i).move();
+    }
         players.get(i).displayParts();
         players.get(i).displayPlayer();
-        
+    
       
         float tempX = players.get(i).getX();
         float tempY = players.get(i).getY();
         players.get(i).collision(tempX, tempY);
-      }
+      
       }
       
     }
@@ -197,3 +200,4 @@ int getDirection(SkeletonData _s)
   }
   return 0;
 }
+  

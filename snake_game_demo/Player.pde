@@ -39,7 +39,7 @@ class Player extends Parts
     //right
     if(direction==0){super.getPosition().x+=super.getWidth();}
     //up
-    if(direction==1){{super.getPosition().y+=super.getWidth();}}
+    if(direction==1){{super.getPosition().y-=super.getWidth();}}
     //left
     if(direction==2){{super.getPosition().x-=super.getWidth();}}
     //down

@@ -1,6 +1,5 @@
 abstract class Parts
 {
-
   private int w;
   private int h;
   private PVector position;

@@ -25,27 +25,7 @@ class Player extends Parts
      id=idd;
   }
   
-<<<<<<< HEAD
-}
-int getId()
-{
-  return id;
-}
-
-void addTail()
-{
-  
-  if((tail.size()>=3))
-  {
-  PVector lastBlock= tail.get(tail.size()-1).getPosition();
-  tail.add(new Parts((int)lastBlock.x ,(int)lastBlock.y, super.getWidth(), super.getHeight()));
-  }
-  do{
-    tail.add(new Parts(0,0,super.getWidth(),super.getHeight()));
-  } while(tail.size()<3);
-  
-}
-=======
+  //moves player and tail together
   void move()
   {
     updateTail();
@@ -62,6 +42,7 @@ void addTail()
   void updateTail()
   {
     tailList.add(new Tail(getX(), getY(), super.getWidth(), super.getHeight(), direction%2));
+    
     if(tailList.size() > score)
     {
       tailList.remove(0);
@@ -70,7 +51,7 @@ void addTail()
   
   void setDirection(int d)
   {
-  direction = d;
+    direction = d;
   }
   
   int getDirection()
@@ -84,18 +65,13 @@ void addTail()
     displayPlayer();
     for(int i = 0; i < tailList.size(); i++)
     {
-      
       image(tailList.get(i).getImage(), (int) tailList.get(i).getX(), tailList.get(i).getY(),super.getWidth(),super.getHeight());
     }
   }
   
   void displayPlayer()
   {
-    if (id==0);
-    {
       image(getImage(),getX(),getY(),super.getWidth(),super.getHeight());
-    }
-    
   }
   int getId()
   {
@@ -118,24 +94,18 @@ void addTail()
     return car2;
   }
   
-  /*
-  void moveTail(float a,float b)
+  //checks if a position overlaps with Parts within this object.
+  boolean collision(float x, float y) //parameters are the position of object being tested for collision.
   {
-    float previousX= a;
-    float previousY= b;
-    float currentX = tail.get(0).getPosition().x;
-    float currentY = tail.get(0).getPosition().Y;
-    tail.get(0).setPosition(a,b);
-    for(int i=1; int i < tail.size()-1;i++)
+    for(Parts t : tailList)
     {
-      tail.get(i).setPosition(currentX,currentY);
-      previousX=currentX;
-      previousY=currentY;
-      
-      currentX=tail.get(i+1).getPosition().x;
-      currentY=tail.get(i+1).getPosition().y;
+      if (x == t.getX() && y == t.getY())
+      {
+        System.out.print(1);
+        return true;
+      }
     }
+    return false;
   }
-  */
->>>>>>> ede0c4f227d57c43075fae72288ddcbd949e53cc
+  
 }

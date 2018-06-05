@@ -2,7 +2,7 @@ public class Tail extends Parts
 {
   public PImage nos = loadImage("ver_tail.png");
   public PImage eow = loadImage("hor_tail.png");
-  //private int lifeSpan;
+
   private int direction;
   
   public Tail(float x, float y, int w, int h, int d)

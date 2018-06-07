@@ -32,7 +32,7 @@ void setup()
   size(640, 480);
   tron = new Grid(width, height, w);
   players.add(new Player(3 * w, w, w, w, 3, 0)); //player 1
-  //players.add(new Player(width - 2 * w, height - 2 * w, w, w, 2, 1)); //player 2
+  players.add(new Player(width - 2 * w, height - 2 * w, w, w, 2, 1)); //player 2
   kinect = new Kinect(this);
   smooth();
   bodies = new ArrayList<SkeletonData>(); 
@@ -50,7 +50,7 @@ void draw()
   {
     for(int i = 0; i < bodies.size(); i++)
     {
-      if(frameCount % 15 == 0)
+      if(frameCount % 5 == 0)
       {
         players.get(i).setDirection(getDirection(bodies.get(i)));
         players.get(i).move();
@@ -65,9 +65,12 @@ void draw()
       //collision
       float tempX = players.get(i).getX();
       float tempY = players.get(i).getY();
-      if(players.get(i).collision(tempX, tempY))
+      for (int j = 0; j < players.size(); j++)
       {
-        gameState = 1;
+        if(players.get(j).collision(tempX, tempY))
+        {
+          gameState = i + 1;
+        }
       }
     }
   }
@@ -194,7 +197,7 @@ void checkPowerUp(Player p)
 
 void checkGameState()
 {
-  if (gameState == 1)
+  if (gameState >= 1)
   {
     System.out.println("Game Over!");
     System.out.println("You scored " + (players.get(0).score - 3) + " points!");

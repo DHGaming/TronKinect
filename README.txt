@@ -1,5 +1,8 @@
 # TronKinect
-This a game Called Tron V Snake. It take elements from both the classic game Tron and the infamous game Snake. You must have a Kinect to play this game. Instead of using a plain keyboard or controller to play this game, you use your body. 
+This a game Called Tron V Snake. It takes elements from both the classic game Tron and the infamous game Snake. 
+You must have an 360 Kinect to play this game. 
+Instead of using a plain keyboard or controller to play this game, you use your body. 
+This is the basis of human-computer interaction.
 
 ********CONTROLS***********
 Left hand up // go left 
